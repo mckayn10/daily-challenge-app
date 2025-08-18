@@ -4,6 +4,8 @@ import User, { IUser } from '../models/User';
 
 export interface AuthRequest extends Request {
   user?: IUser;
+  body: any;
+  headers: any;
 }
 
 export const authenticateToken = async (req: AuthRequest, res: Response, next: NextFunction) => {
