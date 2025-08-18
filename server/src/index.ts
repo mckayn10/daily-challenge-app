@@ -25,7 +25,7 @@ const io = new Server(server, {
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? [process.env.FRONTEND_URL || "*"]
+    ? true  // Allow all origins in production for now
     : ["http://localhost:3000", "http://localhost:3001"],
   credentials: true
 }));
