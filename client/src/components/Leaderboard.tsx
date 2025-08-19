@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 import './Leaderboard.css';
 
 interface LeaderboardUser {
@@ -17,7 +18,7 @@ const Leaderboard: React.FC = () => {
 
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/users/leaderboard?sortBy=${activeTab === 'points' ? 'points' : 'streak'}`);
+      const response = await fetch(`${API_ENDPOINTS.users}/leaderboard?sortBy=${activeTab === 'points' ? 'points' : 'streak'}`);
       if (response.ok) {
         const data = await response.json();
         setUsers(data);

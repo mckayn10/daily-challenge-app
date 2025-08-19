@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useChallenge } from '../contexts/ChallengeContext';
 import { useAuth } from '../contexts/AuthContext';
+import { API_ENDPOINTS } from '../config/api';
 import './ChallengeView.css';
 
 const ChallengeView: React.FC = () => {
@@ -46,7 +47,7 @@ const ChallengeView: React.FC = () => {
     setSubmitMessage('');
     
     try {
-      const response = await fetch('http://localhost:5001/api/submissions', {
+      const response = await fetch(`${API_ENDPOINTS.submissions}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

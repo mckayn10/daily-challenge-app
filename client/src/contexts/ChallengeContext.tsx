@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 
 interface Challenge {
   _id: string;
@@ -20,7 +21,6 @@ interface ChallengeContextType {
 
 const ChallengeContext = createContext<ChallengeContextType | undefined>(undefined);
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [todayChallenge, setTodayChallenge] = useState<Challenge | null>(null);
@@ -29,7 +29,7 @@ export const ChallengeProvider: React.FC<{ children: ReactNode }> = ({ children 
   const fetchTodayChallenge = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/challenges/today`);
+      const response = await fetch(`${API_ENDPOINTS.challenges}/today`);
       if (response.ok) {
         const challenge = await response.json();
         setTodayChallenge(challenge);

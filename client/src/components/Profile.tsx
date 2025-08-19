@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { API_ENDPOINTS } from '../config/api';
 import './Profile.css';
 
 interface Achievement {
@@ -24,7 +25,7 @@ const Profile: React.FC = () => {
 
   const fetchProfileData = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/users/profile', {
+      const response = await fetch(`${API_ENDPOINTS.users}/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -43,7 +44,7 @@ const Profile: React.FC = () => {
 
   const fetchAchievements = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/achievements', {
+      const response = await fetch(`${API_ENDPOINTS.achievements}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
